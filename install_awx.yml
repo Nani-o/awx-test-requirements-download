@@ -2,21 +2,6 @@
 - hosts: localhost
   become: True
   tasks:
-    - name: "Install dependencies"
-      apt:
-        name:
-          - docker-compose
-        update_cache: True
-        state: present
-
-    - name: "Install pip dependencies"
-      pip:
-        name:
-          - ansible
-          - docker-compose
-        # executable: pip3
-        state: latest
-
     - name: "Clone repository"
       git:
         clone: True
