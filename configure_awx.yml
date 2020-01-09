@@ -47,5 +47,26 @@
         tower_password: "{{ awx_password }}"
         tower_username: "{{ awx_username }}"
         tower_verify_ssl: False
-...
 
+    - name: Create job template
+      tower_job_template:
+        name: "Test"
+        job_type: "run"
+        inventory: "Test"
+        project: "Test"
+        playbook: "plays/test.yml"
+        state: "present"
+        tower_host: "{{ awx_host }}"
+        tower_password: "{{ awx_password }}"
+        tower_username: "{{ awx_username }}"
+        tower_verify_ssl: False
+
+    - name: Run job
+      tower_job_launch:
+        job_template: "My Job Template"
+      register: job
+
+    - name: Wait job
+      tower_job_wait:
+        job_id: "{{ job.id }}"
+...
