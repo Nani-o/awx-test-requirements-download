@@ -16,6 +16,7 @@ env:
 install:
   - pip install ansible docker-compose
   - which ansible-playbook
+  - ls -a
   - ansible-playbook install_awx.yml -e awx_version=$awx_version
 
 script:
