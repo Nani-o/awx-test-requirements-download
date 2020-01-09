@@ -1,0 +1,21 @@
+---
+dist: xenial
+language: python
+python: "3.6"
+
+sudo: true
+
+services:
+  - docker
+
+env:
+  - awx_version: 9.1.0
+  - awx_version: 9.0.1
+  - awx_version: 9.0.0
+
+install:
+  - pip install ansible
+  - ansible-playbook install.yml -e awx_version=$awx_version
+
+script:
+  - true

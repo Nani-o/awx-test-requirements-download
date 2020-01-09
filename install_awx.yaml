@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  become: True
+  tasks:
+    - name: "Install dependencies"
+      apt:
+        name:
+          - docker-compose
+        update_cache: True
+        state: present
+
+    - name: "Install pip dependencies"
+      pip:
+        name:
+          - ansible
+          - docker-compose
+        # executable: pip3
+        state: latest
+
+    - name: "Clone repository"
+      git:
+        clone: True
+        dest: "/root/awx"
+        repo: "https://github.com/ansible/awx"
+        version: "devel"
+        update: False
+        force: True
+
+    - name: "Run awx install playbook"
+      command: "ansible-playbook -i inventory install.yml -e dockerhub_version={{ awx_version }}"
+      args:
+        chdir: "/root/awx/installer"
+...
