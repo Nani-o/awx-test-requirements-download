@@ -20,6 +20,7 @@ install:
   - ls -a
   - ansible -m debug -a var=ansible_python_interpreter localhost
   - ansible-playbook install_awx.yml -e awx_version=$awx_version
+  - sleep 60
   - ansible-playbook configure_awx.yml
 
 script:
