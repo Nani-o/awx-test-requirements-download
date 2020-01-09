@@ -12,7 +12,7 @@
         force: True
 
     - name: "Run awx install playbook"
-      command: "ansible-playbook -i inventory install.yml -e dockerhub_version={{ awx_version }}"
+      command: "/home/travis/virtualenv/python3.6.7/bin/ansible-playbook -i inventory install.yml -e dockerhub_version={{ awx_version }}"
       args:
         chdir: "/root/awx/installer"
 ...
