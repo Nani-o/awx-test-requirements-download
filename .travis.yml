@@ -15,7 +15,7 @@ env:
 
 install:
   - pip install ansible
-  - ansible-playbook install.yml -e awx_version=$awx_version
+  - ansible-playbook install_awx.yml -e awx_version=$awx_version
 
 script:
   - true
