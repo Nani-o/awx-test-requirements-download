@@ -18,6 +18,7 @@ install:
   - pip list
   - which ansible-playbook
   - ls -a
+  - ansible -m debug -a var=ansible_python_interpreter localhost
   - ansible-playbook install_awx.yml -e awx_version=$awx_version
 
 script:
