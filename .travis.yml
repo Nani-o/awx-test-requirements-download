@@ -12,10 +12,10 @@ env:
   - awx_version: 9.0.0
 
 install:
-  - apt -y update
-  - apt -y install python python-pip
-  - pip install ansible docker-compose
-  - pip list
+  - sudo apt -y update
+  - sudo apt -y install python python-pip
+  - sudo pip install ansible docker-compose
+  - sudo pip list
   - which ansible-playbook
   - ls -a
   - ansible -m debug -a var=ansible_python_interpreter localhost
