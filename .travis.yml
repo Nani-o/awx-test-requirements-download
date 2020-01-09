@@ -20,7 +20,7 @@ install:
   - ls -a
   - ansible -m debug -a var=ansible_python_interpreter localhost
   - ansible-playbook install_awx.yml -e awx_version=$awx_version
-  - sleep 300
+  - sleep 150
   - ansible-playbook configure_awx.yml
   - docker exec -it -- ls /var/lib/awx/projects/
   - docker exec -it -- cat /tmp/tmp_tree
