@@ -38,6 +38,21 @@
         tower_password: "{{ awx_password }}"
         tower_username: "{{ awx_username }}"
         tower_verify_ssl: False
+    register: result
+
+    - name: Wait for the project to be status=successful
+      uri:
+        url: "{{ tower_host }}/api/v2/projects/{{ result.id }}/"
+        method: GET
+        user: "{{ tower_username }}"
+        password: "{{ tower_password }}"
+        validate_certs: false
+        force_basic_auth: true
+        return_content: true
+      register: result
+      until: result.json.summary_fields.last_update is defined and result.json.summary_fields.last_update.status == "successful"
+      retries: 60
+      delay: 1
 
     - name: Create inventories
       tower_inventory:
