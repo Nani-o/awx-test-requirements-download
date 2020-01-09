@@ -14,7 +14,7 @@ env:
   - awx_version: 9.0.0
 
 install:
-  - pip install ansible
+  - pip install ansible docker-compose
   - ansible-playbook install_awx.yml -e awx_version=$awx_version
 
 script:
