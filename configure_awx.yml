@@ -1,0 +1,51 @@
+- hosts: localhost
+  vars:
+    awx_organizations:
+      - name: "Test"
+    awx_projects:
+      - name: "Command Center"
+        organization: "Exploit"
+        scm_type: "git"
+        scm_url: "https://github.com/Nani-o/awx-test"
+        scm_clean: True
+        scm_update_on_launch: True
+    awx_inventories:
+      - name: "Test"
+        organization: "Test"
+    awx_host: "http://127.0.0.1"
+    awx_username: "admin"
+    awx_password: "password"
+  tasks:
+    - name: Create organizations
+      tower_organization:
+        name: "Test"
+        state: present
+        tower_host: "{{ awx_host }}"
+        tower_password: "{{ awx_password }}"
+        tower_username: "{{ awx_username }}"
+        tower_verify_ssl: False
+
+    - name: Create projects
+      tower_project:
+        name: "Test"
+        organization: "Test"
+        scm_type: "git"
+        scm_url: "https://github.com/Nani-o/awx-test"
+        scm_clean: True
+        scm_update_on_launch: True
+        state: present
+        tower_host: "{{ awx_host }}"
+        tower_password: "{{ awx_password }}"
+        tower_username: "{{ awx_username }}"
+        tower_verify_ssl: False
+
+    - name: Create inventories
+      tower_inventory:
+        name: "Test"
+        organization: "Test"
+        tower_host: "{{ awx_host }}"
+        tower_password: "{{ awx_password }}"
+        tower_username: "{{ awx_username }}"
+        tower_verify_ssl: False
+...
+
