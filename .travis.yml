@@ -22,8 +22,8 @@ install:
   - ansible-playbook install_awx.yml -e awx_version=$awx_version
   - sleep 150
   - ansible-playbook configure_awx.yml
-  - docker exec -it -- ls /var/lib/awx/projects/
-  - docker exec -it -- cat /tmp/tmp_tree
+  - docker exec -it awx_task -- ls /var/lib/awx/projects/
+  - docker exec -it awx_task -- cat /tmp/tmp_tree
 
 script:
   - true
