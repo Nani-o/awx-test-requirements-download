@@ -42,10 +42,10 @@
 
     - name: Wait for the project to be status=successful
       uri:
-        url: "{{ tower_host }}/api/v2/projects/{{ result.id }}/"
+        url: "{{ awx_host }}/api/v2/projects/{{ result.id }}/"
         method: GET
-        user: "{{ tower_username }}"
-        password: "{{ tower_password }}"
+        user: "{{ awx_username }}"
+        password: "{{ awx_password }}"
         validate_certs: false
         force_basic_auth: true
         return_content: true
