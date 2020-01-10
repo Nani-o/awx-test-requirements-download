@@ -78,7 +78,7 @@
 
     - name: Run job
       tower_job_launch:
-        job_template: "My Job Template"
+        job_template: "Test"
         tower_host: "{{ awx_host }}"
         tower_password: "{{ awx_password }}"
         tower_username: "{{ awx_username }}"
