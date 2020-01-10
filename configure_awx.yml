@@ -79,9 +79,17 @@
     - name: Run job
       tower_job_launch:
         job_template: "My Job Template"
+        tower_host: "{{ awx_host }}"
+        tower_password: "{{ awx_password }}"
+        tower_username: "{{ awx_username }}"
+        tower_verify_ssl: False
       register: job
 
     - name: Wait job
       tower_job_wait:
         job_id: "{{ job.id }}"
+        tower_host: "{{ awx_host }}"
+        tower_password: "{{ awx_password }}"
+        tower_username: "{{ awx_username }}"
+        tower_verify_ssl: False
 ...
