@@ -32,4 +32,6 @@ install:
 script:
   - sleep 60
   - sudo docker exec -it awx_task tree /var/lib/awx/projects/
+  - sudo docker exec -it awx_task tree /var/lib/awx/projects/ | grep -q 'geerlingguy.java' || (echo "Role has not been downloaded" && false)
   - sudo docker exec -it awx_task cat /tmp/tree
+  - sudo docker exec -it awx_task cat /tmp/tree | grep -q 'geerlingguy.java' || (echo "Role is not present in execution folder" && false)
