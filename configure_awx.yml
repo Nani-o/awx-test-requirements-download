@@ -31,7 +31,7 @@
         organization: "Test"
         scm_type: "git"
         scm_url: "https://github.com/Nani-o/awx-test"
-        scm_clean: True
+        scm_clean: False
         scm_update_on_launch: True
         state: present
         tower_host: "{{ awx_host }}"
