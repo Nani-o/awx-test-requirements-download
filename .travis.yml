@@ -26,11 +26,10 @@ install:
   - ansible -m debug -a var=ansible_python_interpreter localhost
   - ansible-playbook install_awx.yml -e awx_version=$awx_version
   - sudo docker exec -it awx_task yum -y install tree
-  - sleep 200
+  - sleep 250
   - ansible-playbook configure_awx.yml
-  - sleep 120
-  - sudo docker exec -it awx_task tree /var/lib/awx/projects/
-  - sudo docker exec -it awx_task cat /tmp/tree
 
 script:
-  - true
+  - sleep 60
+  - sudo docker exec -it awx_task tree /var/lib/awx/projects/
+  - sudo docker exec -it awx_task cat /tmp/tree
