@@ -26,7 +26,7 @@ install:
   - ansible -m debug -a var=ansible_python_interpreter localhost
   - ansible-playbook install_awx.yml -e awx_version=$awx_version
   - sudo docker exec -it awx_task yum -y install tree
-  - FILE=$(sudo docker exec -it awx_task find / -name 'project_update.yml') && sudo docker exec -it awx_task bash -c 'sed -i "s/when\:\ roles_enabled.*//g" $FILE'
+  - FILE=$(sudo docker exec -it awx_task find / -name 'project_update.yml') && sudo docker exec -it -e FILE="$FILE" awx_task bash -c 'sed -i "s/when\:\ roles_enabled.*//g" $FILE'
   - sleep 250
   - ansible-playbook configure_awx.yml
 
